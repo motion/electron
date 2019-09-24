@@ -438,8 +438,9 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'desktop-capturer-get-sources')
       w.webContents.executeJavaScript(`require('electron').desktopCapturer.getSources({ types: ['screen'] })`)
 
-      const [, webContents] = await promise
+      const [, webContents, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
+      expect(callerStack).to.be.a('string')
     })
 
     it('should emit remote-require event when remote.require() is invoked', async () => {
@@ -454,9 +455,10 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'remote-require')
       w.webContents.executeJavaScript(`require('electron').remote.require('test')`)
 
-      const [, webContents, moduleName] = await promise
+      const [, webContents, moduleName, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
       expect(moduleName).to.equal('test')
+      expect(callerStack).to.be.a('string')
     })
 
     it('should emit remote-get-global event when remote.getGlobal() is invoked', async () => {
@@ -471,9 +473,10 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'remote-get-global')
       w.webContents.executeJavaScript(`require('electron').remote.getGlobal('test')`)
 
-      const [, webContents, globalName] = await promise
+      const [, webContents, globalName, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
       expect(globalName).to.equal('test')
+      expect(callerStack).to.be.a('string')
     })
 
     it('should emit remote-get-builtin event when remote.getBuiltin() is invoked', async () => {
@@ -488,9 +491,10 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'remote-get-builtin')
       w.webContents.executeJavaScript(`require('electron').remote.app`)
 
-      const [, webContents, moduleName] = await promise
+      const [, webContents, moduleName, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
       expect(moduleName).to.equal('app')
+      expect(callerStack).to.be.a('string')
     })
 
     it('should emit remote-get-current-window event when remote.getCurrentWindow() is invoked', async () => {
@@ -505,8 +509,9 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'remote-get-current-window')
       w.webContents.executeJavaScript(`require('electron').remote.getCurrentWindow()`)
 
-      const [, webContents] = await promise
+      const [, webContents, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
+      expect(callerStack).to.be.a('string')
     })
 
     it('should emit remote-get-current-web-contents event when remote.getCurrentWebContents() is invoked', async () => {
@@ -521,8 +526,9 @@ describe('app module', () => {
       const promise = emittedOnce(app, 'remote-get-current-web-contents')
       w.webContents.executeJavaScript(`require('electron').remote.getCurrentWebContents()`)
 
-      const [, webContents] = await promise
+      const [, webContents, callerStack] = await promise
       expect(webContents).to.equal(w.webContents)
+      expect(callerStack).to.be.a('string')
     })
   })
 

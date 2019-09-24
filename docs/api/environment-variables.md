@@ -108,6 +108,17 @@ Prints the stack trace to the console when Electron crashes.
 
 This environment variable will not work if the `crashReporter` is started.
 
+### `ELECTRON_ENABLE_API_FILTERING_STACKS`
+
+Captures the stack trace when following APIs are being filtered via events:
+- `desktopCapturer.getSources()` / `desktop-capturer-get-sources`
+- `remote.require()` / `remote-require`
+- `remote.getGlobal()` / `remote-get-builtin`
+- `remote.getBuiltin()` / `remote-get-global`
+- `remote.getCurrentWindow()` / `remote-get-current-window`
+- `remote.getCurrentWebContents()` / `remote-get-current-web-contents`
+- `remote.getGuestWebContents()` / `remote-get-guest-web-contents`
+
 ### `ELECTRON_DEFAULT_ERROR_MODE` _Windows_
 
 Shows the Windows's crash dialog when Electron crashes.

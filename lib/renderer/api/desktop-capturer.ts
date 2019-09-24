@@ -7,6 +7,14 @@ function isValid (options: Electron.SourcesOptions) {
   return Array.isArray(types)
 }
 
+function getCurrentStack () {
+  const target = {}
+  if (process.env.ELECTRON_ENABLE_API_FILTERING_STACKS) {
+    Error.captureStackTrace(target)
+  }
+  return (target as any).stack
+}
+
 export async function getSources (options: Electron.SourcesOptions) {
   if (!isValid(options)) throw new Error('Invalid options')
 
@@ -21,7 +29,7 @@ export async function getSources (options: Electron.SourcesOptions) {
     captureScreen,
     thumbnailSize,
     fetchWindowIcons
-  } as ElectronInternal.GetSourcesOptions)
+  } as ElectronInternal.GetSourcesOptions, getCurrentStack())
 
   return sources.map(source => ({
     id: source.id,

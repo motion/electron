@@ -423,9 +423,12 @@ Returns:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
+* `callerStack` String | undefined
 
 Emitted when `desktopCapturer.getSources()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will make it return empty sources.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-require'
 
@@ -434,10 +437,13 @@ Returns:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 * `moduleName` String
+* `callerStack` String | undefined
 
 Emitted when `remote.require()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the module from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-get-global'
 
@@ -446,10 +452,13 @@ Returns:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 * `globalName` String
+* `callerStack` String | undefined
 
 Emitted when `remote.getGlobal()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the global from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-get-builtin'
 
@@ -458,10 +467,13 @@ Returns:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 * `moduleName` String
+* `callerStack` String | undefined
 
 Emitted when `remote.getBuiltin()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the module from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-get-current-window'
 
@@ -469,10 +481,13 @@ Returns:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
+* `callerStack` String | undefined
 
 Emitted when `remote.getCurrentWindow()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the object from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-get-current-web-contents'
 
@@ -480,10 +495,13 @@ Returns:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
+* `callerStack` String | undefined
 
 Emitted when `remote.getCurrentWebContents()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the object from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
 
 ### Event: 'remote-get-guest-web-contents'
 
@@ -492,10 +510,15 @@ Returns:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 * `guestWebContents` [WebContents](web-contents.md)
+* `callerStack` String | undefined
 
 Emitted when `<webview>.getWebContents()` is called in the renderer process of `webContents`.
 Calling `event.preventDefault()` will prevent the object from being returned.
 Custom value can be returned by setting `event.returnValue`.
+
+**Note:** `callerStack` is only available when [this environment variable][electron_enable_api_filtering_stacks] is set.
+
+[electron_enable_api_filtering_stacks]: environment-variables.md#electron_enable_api_filtering_stacks
 
 ## Methods
 
